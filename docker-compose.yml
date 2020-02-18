@@ -1,0 +1,15 @@
+version: '3'
+services:
+  app:
+    container_name: docker-node-mongo
+    restart: always # restart incase magfail sya
+    build: .        # > looks in the directory for a > Dockerfile <
+    ports:
+      - '80:3000'   # port 3000 is mapped to port 80 (default for http)
+    links:          # links our app container to our mongo container
+      - mongo
+  mongo:
+    container_name: mongo
+    image: mongo # pulls image from dockerhub
+    ports:
+      - '27017:27017' # port ng mongodb
